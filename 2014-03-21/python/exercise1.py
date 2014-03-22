@@ -32,7 +32,7 @@ UPPER TERRACE + ROOMS (floor1)
 
 # floor1 - base and tiles
 floor1_base = PROD([Q(28),Q(10.35)])
-floor1_tiles = PROD([QUOTE([-0.05,27.90,-0.05]),QUOTE([-0.05,10.25,-0.05])])
+floor1_tiles = PROD([QUOTE([-0.05,7.85,-0.05]),QUOTE([-0.05,10.25,-0.05])])
 
 # duplicate columns: front/rear column rows
 column_row1_f1 = STRUCT(NN(4)([T([1,2])([2-c_size/2,-c_size])(column),T(1)(8)]))
@@ -100,4 +100,4 @@ roof = STRUCT([T(3)(0.001)(roof_p1),COLOR(BROWN)(roof_p2),T(3)(0.001)(COLOR(RED)
 
 two_and_half_model = STRUCT([floor0,T([1,2,3])([8-c_size/2,8.15+c_size,10])(floor1),T([1,2,3])([8-c_size/2,8.15+c_size,20])(roof)])
 
-# VIEW(two_and_half_model)
+VIEW(two_and_half_model)

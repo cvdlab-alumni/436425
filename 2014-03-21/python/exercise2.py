@@ -70,6 +70,10 @@ west = R([1,2])(PI/2)(R([2,3])(PI/2)(COLOR(BLUE)(west)))
 side_views = STRUCT ([ T([1,2,3])([16-c_size/2,6,10])(south), T([1,2,3])([16-c_size/2,21,10])(north), 
 	T([1,2,3])([6,8.15+10.35+c_size,10])(east), T([1,2,3])([38,8.15+c_size,10])(west)])
 
+"""
+MOCK UP 3D
+"""
+
 mock_up_3D = STRUCT([ two_and_half_model, side_views ])
 
 VIEW(mock_up_3D)
