@@ -209,4 +209,4 @@ solid_model_3D = STRUCT ([floor0_3D, T([1,2])([8-c_size/2,8.15+c_size])(floor1_3
 	T([1,2,3])([36-c_size/2-w_width/3,8.15+c_size,1.9])(west_3D),
 	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
 
-VIEW(solid_model_3D)
+# VIEW(solid_model_3D)
