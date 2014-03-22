@@ -15,9 +15,10 @@ step_3D = STRUCT([p1_3D,step_3D_partial])
 # STAIRS
 
 stairs = STRUCT(NN(4)([step_3D,T([1,3])([0.5,0.2])]))
+stairs = T([1,2,3])([11,-2,0.2]) (R([1,2])(PI/2)(stairs))
 
-# TODO COMPLETE!!
+double_stairs = STRUCT(NN(2)([stairs,  T([2,3]) ([8.15+c_size,0.8])  ]))
 
-solid_model_3D = STRUCT([ solid_model_3D, stairs])
+solid_model_3D = STRUCT([ solid_model_3D, double_stairs])
 
 VIEW(solid_model_3D)
