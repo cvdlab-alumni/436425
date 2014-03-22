@@ -123,7 +123,7 @@ def build_window_3D(width):
 			hole = T([1,2])([width,width])(PROD([Q(x-width*2),Q(y-width*2)]))
 			edge = DIFFERENCE([base,hole])
 			edge_3D = PROD([edge,Q(width)])
-			return STRUCT([edge_3D, MATERIAL(glass_material)( T(3)(width/3)(hole))])
+			return STRUCT([COLOR(P_DGRAY)(edge_3D), MATERIAL(glass_material)( T(3)(width/3)(hole))])
 		return build_window_tmp2
 	return build_window_tmp1
 
@@ -168,21 +168,21 @@ west_window = build_window_3D(wnd_width)(3.45)(height)
 """
 
 # floor0
-floor0_base_3D = PROD([floor0_base,QUOTE([-0.7,0.4])])
-floor0_tiles_3D = PROD([floor0_tiles,QUOTE([-1.1,0.03])])
-columns_f0_3D = PROD([columns_f0,Q(1)])
+floor0_base_3D = COLOR(P_GRAY)(PROD([floor0_base,QUOTE([-0.7,0.4])]))
+floor0_tiles_3D = COLOR(P_BROWN)(PROD([floor0_tiles,QUOTE([-1.1,0.03])]))
+columns_f0_3D = COLOR(P_DGRAY)(PROD([columns_f0,Q(1)]))
 floor0_3D = STRUCT([floor0_base_3D, floor0_tiles_3D ,columns_f0_3D ])
 
 # floor1
-floor1_base_3D = PROD([floor1_base,QUOTE([-1.5,0.4])])
-floor1_tiles_3D = PROD([floor1_tiles,QUOTE([-1.9,0.03])])
-columns_f1_3D = PROD([columns_f1,Q(6.3)])
-int_walls_3D = PROD([int_walls,QUOTE([-1.9,4])])
-wrdb_3D = PROD([wrdb,QUOTE([-1.9,3])])
+floor1_base_3D = COLOR(P_GRAY)(PROD([floor1_base,QUOTE([-1.5,0.4])]))
+floor1_tiles_3D = COLOR(P_BROWN)(PROD([floor1_tiles,QUOTE([-1.9,0.03])]))
+columns_f1_3D = COLOR(P_DGRAY)(PROD([columns_f1,Q(6.3)]))
+int_walls_3D = COLOR(P_WOOD)(PROD([int_walls,QUOTE([-1.9,4])]))
+wrdb_3D = COLOR(P_DWOOD)(PROD([wrdb,QUOTE([-1.9,3])]))
 floor1_3D = STRUCT([floor1_base_3D, floor1_tiles_3D ,columns_f1_3D, int_walls_3D ,wrdb_3D ])
 
 # south
-walls_3D = PROD([walls,Q(w_width/2)])
+walls_3D = COLOR(P_DGRAY)(PROD([walls,Q(w_width/2)]))
 south_3D = STRUCT([windows,walls_3D])
 south_3D = R([2,3])(PI/2)(south_3D)
 
@@ -198,9 +198,16 @@ west_3D = STRUCT(NN(3)([west_window,T(1)(3.45)]))
 west_3D = R([1,2])(PI/2)(R([2,3])(PI/2)(west_3D))
 
 #roof
-roof_p1_3D = PROD([roof_p1,QUOTE([-5.9,0.4])])
-roof_p2_3D = PROD([roof_p2,QUOTE([-6.3,0.2])])
+roof_p1_3D = COLOR(P_GRAY)(PROD([roof_p1,QUOTE([-5.9,0.4])]))
+roof_p2_3D = COLOR(P_DGRAY)(PROD([roof_p2,QUOTE([-6.3,0.2])]))
 roof_3D = STRUCT([roof_p1_3D,roof_p2_3D])
+
+# stairs
+
+# step_p1 = MKPOL
+
+# VIEW(stairs)
+
 
 solid_model_3D = STRUCT ([floor0_3D, T([1,2])([8-c_size/2,8.15+c_size])(floor1_3D),
 	T([1,2,3])([16-c_size/2,8.15+c_size+w_width/2,1.9])(south_3D),
