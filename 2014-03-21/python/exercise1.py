@@ -5,7 +5,7 @@ COLUMN
 """
 
 c_size = 0.27
-c_width = c_size/11
+c_width = c_size/10
 column_p1 = STRUCT(NN(2)([ PROD([Q(c_size),Q(c_width)]) ,T(2)(c_size-c_width)]))
 column_p2 = PROD([QUOTE([-c_size/2+c_width/2,c_width]), QUOTE([-c_width,c_size-c_width*2,-c_width])])
 column =  (STRUCT([column_p1,column_p2]))
@@ -24,8 +24,7 @@ column_row2_f0 = STRUCT(NN(2)([ T([1,2])([10-c_size,8.15])(column) , T(1)(8)]))
 columns_f0 = STRUCT([column_row1_f0,column_row2_f0])
 
 # assembling floor0
-floor0 = STRUCT([floor0_base,T(3)(0.001)(COLOR(BROWN)(floor0_tiles)),COLOR(GREEN)(columns_f0)])
-
+floor0 = STRUCT([floor0_base,T(3)(0.001)(COLOR(BROWN)(floor0_tiles)),COLOR(RED)(columns_f0)])
 
 """
 UPPER TERRACE + ROOMS (floor1)
@@ -78,12 +77,27 @@ int_walls = STRUCT([w_1_2,w_3,w_4_5,w_6])
 wrdb = PROD([QUOTE([-8-16.5,1]),QUOTE([-0.74,4.45])])
 
 # assembling floor1
-floor1 = STRUCT([floor1_base,T(3)(0.001)(COLOR(BROWN)(floor1_tiles)),COLOR(GREEN)(columns_f1),
+floor1 = STRUCT([floor1_base,T(3)(0.001)(COLOR(BROWN)(floor1_tiles)),COLOR(RED)(columns_f1),
 	T(3)(0.002)(COLOR(CYAN)(ext_walls)),T(3)(0.002)(COLOR(BLUE)(int_walls)),T(3)(0.002)(COLOR(MAGENTA)(wrdb))])
+
+"""
+ROOF
+"""
+
+# roof parts
+roof_p1 = PROD([Q(28),Q(10.35)])
+roof_p2 = T([1,2])([-0.1,-0.1])(PROD([Q(28+0.2),Q(10.35+0.2)]))
+# duplicating columns: front/rear column rows
+column_row1_r = STRUCT(NN(4)([T([1,2])([2-c_size/2,-c_size])(column),T(1)(8)]))
+column_row2_r = STRUCT(NN(2)([column_row1_r,T(2)(10.35+c_size)]))
+columns_r = STRUCT([column_row1_r,column_row2_r])
+#assembling roof
+roof = STRUCT([T(3)(0.001)(roof_p1),COLOR(BROWN)(roof_p2),T(3)(0.001)(COLOR(RED)(columns_r))])
 
 """
 2.5D MODEL
 """
-two_and_half_model = STRUCT([floor0,T([1,2,3])([8-c_size/2,8.15+c_size,4])(floor1)])
+
+two_and_half_model = STRUCT([floor0,T([1,2,3])([8-c_size/2,8.15+c_size,10])(floor1),T([1,2,3])([8-c_size/2,8.15+c_size,20])(roof)])
 
 VIEW(two_and_half_model)
