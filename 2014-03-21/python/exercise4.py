@@ -2,8 +2,8 @@ from exercise3 import *
 
 # STEP
 
-p1 = (PROD([Q(0.5),QUOTE([-0.25,0.09])]))
-p2 = (PROD([QUOTE([-0.225,0.04]),QUOTE([-0.16,0.09])]))
+p1 = PROD([Q(0.5),QUOTE([-0.25,0.09])])
+p2 = PROD([QUOTE([-0.225,0.04]),QUOTE([-0.16,0.09])])
 p3_verts = [ [0,0],[0,0.05],[0.5,0.25],[0.5,0.20] ]
 p3 = MKPOL([p3_verts, [[1,2,3,4]], None])
 

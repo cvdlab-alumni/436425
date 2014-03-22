@@ -1,13 +1,19 @@
 from pyplasm import *
 
 """
-VARIABLES
+VARIABLES AND COLORS
 """
 
 c_size = 0.27
 c_width = c_size/10
 height = 4
 glass_material = [0.1,0.2,0.3,0.5,  0,0,0,0.5,  2,2,2,0.5, 0,0,0,0.5, 100]
+
+P_GRAY	= Color4f([0.9, 0.9, 0.9, 1.0])
+P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
+P_BROWN	= Color4f([0.8, 0.7, 0.6, 1.0])
+P_WOOD	= Color4f([0.67, 0.51, 0.25, 1.0])
+P_DWOOD	= Color4f([0.56, 0.43, 0.22, 1.0])
 
 """
 COLUMN
@@ -197,16 +203,21 @@ east_3D = R([1,2])(-PI/2)(R([2,3])(PI/2)(east_3D))
 west_3D = STRUCT(NN(3)([west_window,T(1)(3.45)]))
 west_3D = R([1,2])(PI/2)(R([2,3])(PI/2)(west_3D))
 
-#roof
+# roof
 roof_p1_3D = COLOR(P_GRAY)(PROD([roof_p1,QUOTE([-5.9,0.4])]))
 roof_p2_3D = COLOR(P_DGRAY)(PROD([roof_p2,QUOTE([-6.3,0.2])]))
 roof_3D = STRUCT([roof_p1_3D,roof_p2_3D])
+
+# grass
+grass = PROD([Q(50),Q(40)])
+grass_3D = COLOR(GREEN)(PROD([grass,Q(0.5)]))
 
 solid_model_3D = STRUCT ([floor0_3D, T([1,2])([8-c_size/2,8.15+c_size])(floor1_3D),
 	T([1,2,3])([16-c_size/2,8.15+c_size+w_width/2,1.9])(south_3D),
 	T([1,2,3])([16-c_size/2,8.15+c_size+10.35-w_width/2,1.9])(north_3D),
 	T([1,2,3])([16-c_size/2,8.15+10.35+c_size,1.9])(east_3D),
 	T([1,2,3])([36-c_size/2-w_width/3,8.15+c_size,1.9])(west_3D),
-	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
+	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D),
+	T([1,2,3])([-8,-10,-0.5])(grass_3D)])
 
-# VIEW(solid_model_3D)
+VIEW(solid_model_3D)
