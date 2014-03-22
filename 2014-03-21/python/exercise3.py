@@ -202,13 +202,6 @@ roof_p1_3D = COLOR(P_GRAY)(PROD([roof_p1,QUOTE([-5.9,0.4])]))
 roof_p2_3D = COLOR(P_DGRAY)(PROD([roof_p2,QUOTE([-6.3,0.2])]))
 roof_3D = STRUCT([roof_p1_3D,roof_p2_3D])
 
-# stairs
-
-# step_p1 = MKPOL
-
-# VIEW(stairs)
-
-
 solid_model_3D = STRUCT ([floor0_3D, T([1,2])([8-c_size/2,8.15+c_size])(floor1_3D),
 	T([1,2,3])([16-c_size/2,8.15+c_size+w_width/2,1.9])(south_3D),
 	T([1,2,3])([16-c_size/2,8.15+c_size+10.35-w_width/2,1.9])(north_3D),
