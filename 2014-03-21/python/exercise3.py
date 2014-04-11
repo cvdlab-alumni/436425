@@ -7,7 +7,7 @@ VARIABLES AND COLORS
 c_size = 0.27
 c_width = c_size/10
 height = 4
-glass_material = [0.1,0.2,0.3,0.5,  0,0,0,0.5,  2,2,2,0.5, 0,0,0,0.5, 100]
+glass_material = [0.1,0.2,0.3,1,  0,0,0,0.5,  2,2,2,1, 0,0,0,1, 100]
 
 P_GRAY	= Color4f([0.9, 0.9, 0.9, 1.0])
 P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
