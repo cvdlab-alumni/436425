@@ -15,6 +15,7 @@ P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
 P_BROWN	= Color4f([0.8, 0.7, 0.6, 1.0])
 P_WOOD	= Color4f([0.67, 0.51, 0.25, 1.0])
 P_DWOOD	= Color4f([0.56, 0.43, 0.22, 1.0])
+P_GREEN = Color4f([0.05, 0.6, 0.08, 1.0])
 
 """
 PLASM FUNCTIONS
@@ -58,7 +59,7 @@ LOWER TERRACE (floor0)
 
 # floor0 - base and tiles
 floor0_base = PROD([Q(20),Q(8.15)])
-floor0_tiles_3D =  generateTiles([20,8.15],[20,8],0.05,0.05)
+floor0_tiles_3D =  generateTiles([20,8.15],[20,12],0.05,0.05)
 
 # duplicate columns: front/rear column rows
 column_row1_f0 = STRUCT(NN(3)([ T([1,2])([2-c_size/2,-c_size])(column) , T(1)(8)]))
@@ -77,7 +78,7 @@ UPPER TERRACE + ROOMS (floor1)
 
 # floor1 - base and tiles
 floor1_base = PROD([Q(28),Q(10.35)])
-floor1_tiles_3D =  generateTiles([7.95,10.35],[8,10],0.05,0.05)
+floor1_tiles_3D =  generateTiles([7.95,10.35],[8,15],0.05,0.05)
 
 # duplicate columns: front/rear column rows
 column_row1_f1 = STRUCT(NN(4)([T([1,2])([2-c_size/2,-c_size])(column),T(1)(8)]))
@@ -133,8 +134,8 @@ roof_3D = STRUCT([roof_p1_3D,roof_p2_3D])
 3D ASSEMBLY
 """
 
-solid_model_3D = STRUCT ([floor0_3D, 
+house_model_3D = STRUCT ([floor0_3D, 
 	T([1,2])([8-c_size/2,8.15+c_size])(floor1_3D),
 	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
 
-# VIEW(solid_model_3D)
+# VIEW(house_model_3D)
