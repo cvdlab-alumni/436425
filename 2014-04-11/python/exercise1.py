@@ -114,7 +114,7 @@ floor1_tiles_3D = COLOR(P_BROWN)( T(3)(1.9)(floor1_tiles_3D))
 columns_f1_3D = COLOR(P_DGRAY)(PROD([columns_f1,Q(6.3)]))
 int_walls_3D = COLOR(P_WOOD)(PROD([int_walls,QUOTE([-1.9,4])]))
 wrdb_3D = COLOR(P_DWOOD)(PROD([wrdb,QUOTE([-1.9,3])]))
-floor1_3D = STRUCT([floor1_base_3D, floor1_tiles_3D ,columns_f1_3D, int_walls_3D ,wrdb_3D ])
+floor1_3D = STRUCT([floor1_base_3D, floor1_tiles_3D ,columns_f1_3D,int_walls_3D, wrdb_3D ])
 
 """
 ROOF
@@ -137,4 +137,4 @@ solid_model_3D = STRUCT ([floor0_3D,
 	T([1,2])([8-c_size/2,8.15+c_size])(floor1_3D),
 	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
 
-VIEW(solid_model_3D)
+# VIEW(solid_model_3D)
