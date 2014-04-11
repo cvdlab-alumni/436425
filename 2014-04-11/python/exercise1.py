@@ -65,9 +65,6 @@ column_row1_f0 = STRUCT(NN(3)([ T([1,2])([2-c_size/2,-c_size])(column) , T(1)(8)
 column_row2_f0 = STRUCT(NN(2)([ T([1,2])([10-c_size,8.15])(column) , T(1)(8)]))
 columns_f0 = STRUCT([column_row1_f0,column_row2_f0])
 
-# # assemble floor0  	TODO REMOVE
-# floor0 = STRUCT([floor0_base,T(3)(0.001)(COLOR(BROWN)(floor0_tiles)),COLOR(RED)(columns_f0)])
-
 # 3D ASSEMBLY
 floor0_base_3D = COLOR(P_GRAY)(PROD([floor0_base,QUOTE([-0.7,0.4])]))
 floor0_tiles_3D = COLOR(P_BROWN)(T(3)(1.1)(floor0_tiles_3D))
@@ -86,18 +83,6 @@ floor1_tiles_3D =  generateTiles([7.95,10.35],[8,10],0.05,0.05)
 column_row1_f1 = STRUCT(NN(4)([T([1,2])([2-c_size/2,-c_size])(column),T(1)(8)]))
 column_row2_f1 = STRUCT(NN(2)([column_row1_f1,T(2)(10.35+c_size)]))
 columns_f1 = STRUCT([column_row1_f1,column_row2_f1])
-
-# # EXTERNAL WALLS 		TODO REMOVE
-# # sud,north,west wall
-# s_wall = PROD([QUOTE([-8,20]),Q(wall_width)])
-# n_wall = PROD([QUOTE([-8,20]),QUOTE([-10.35+wall_width,wall_width])])
-# w_wall = PROD([QUOTE([-28+wall_width,wall_width]),Q(10.35)])
-# # east wall - door
-# e_wall_full = PROD([QUOTE([-8,wall_width]),Q(10.35)])
-# e_door = PROD([QUOTE([-8,wall_width]),QUOTE([-3.7,2.6,-4.05])])
-# e_wall = DIFFERENCE([e_wall_full,e_door])
-# # assemble external walls
-# ext_walls = STRUCT([s_wall,n_wall,w_wall,e_wall])
 
 # INTERNAL WALLS
 # walls 1 and 2 - door
@@ -122,14 +107,6 @@ int_walls = STRUCT([w_1_2,w_3,w_4_5,w_6])
 
 # wardrobe
 wrdb = PROD([QUOTE([-8-16.5,1]),QUOTE([-0.74,4.45])])
-
-# # assemble floor1 			TODO REMOVE
-# floor1 = STRUCT([floor1_base,
-# 	T(3)(0.001)(COLOR(BROWN)(floor1_tiles)),
-# 	COLOR(RED)(columns_f1),
-# 	T(3)(0.002)(COLOR(CYAN)(ext_walls)),	
-# 	T(3)(0.002)(COLOR(BLUE)(int_walls)),
-# 	T(3)(0.002)(COLOR(MAGENTA)(wrdb))])
 
 # 3D ASSEMBLY
 floor1_base_3D = COLOR(P_GRAY)(PROD([floor1_base,QUOTE([-1.5,0.4])]))
