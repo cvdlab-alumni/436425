@@ -14,6 +14,7 @@ water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100] 	# gla
 P_GRAY	= Color4f([0.9, 0.9, 0.9, 1.0])
 P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
 P_BROWN	= Color4f([0.8, 0.7, 0.6, 1.0])
+P_DBROWN= Color4f([0.61, 0.5, 0.09, 1.0])
 P_SBROWN= Color4f([0.83, 0.8, 0.6, 1.0])
 P_WOOD	= Color4f([0.67, 0.51, 0.25, 1.0])
 P_DWOOD	= Color4f([0.56, 0.43, 0.22, 1.0])

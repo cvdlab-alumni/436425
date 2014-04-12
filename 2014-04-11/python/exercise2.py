@@ -36,9 +36,14 @@ EAST VIEW
 # build and assemble windows
 east_window_1 = build_window_3D(wnd_width)(4.05)(4)
 east_window_2 = build_window_3D(wnd_width)(3.7)(4)
+east_window_door = build_window_3D(wnd_width)(2.6)(4)
+east_doorknob = COLOR(P_GRAY)(CUBOID([0.1,0.1,0.03]))
 
 # 3D ASSEMBLY
-east_3D = STRUCT([east_window_1, T(1)(4.05+2.6)(east_window_2)])
+east_3D = STRUCT([east_window_1, 
+	T(1)(4.05+2.6)(east_window_2), 
+	T([1,3])([3.05,-0.05])(east_window_door),
+	T([1,2,3])([5.5,1.8])(east_doorknob)])
 east_3D = R([1,2])(-PI/2)(R([2,3])(PI/2)(east_3D))
 
 """
@@ -71,7 +76,7 @@ step_3D = STRUCT([p1_3D,step_3D_partial])
 stairs = STRUCT(NN(4)([step_3D,T([1,3])([0.5,0.2])]))
 stairs = T([1,2,3])([11,-2,0.2]) (R([1,2])(PI/2)(stairs))
 
-double_stairs = STRUCT(NN(2)([stairs,  T([2,3]) ([8.15+c_size,0.8])  ]))
+double_stairs = STRUCT(NN(2)([stairs,T([2,3])([8.15+c_size,0.8])]))
 
 """
 3D ASSEMBLY
@@ -85,4 +90,4 @@ house_model_3D = STRUCT ([floor0_3D, double_stairs,
 	T([1,2,3])([36-c_size/2-wall_width/3,8.15+c_size,1.9])(west_3D),
 	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
 
-# VIEW(house_model_3D)
+VIEW(house_model_3D)
