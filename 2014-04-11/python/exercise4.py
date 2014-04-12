@@ -170,8 +170,7 @@ objects = STRUCT([T([1,2])([220,90])(S([1,2,3])([1.8,1.8,1.2])(table)),
 AREA ASSEMBLY
 """
 
-area_model = STRUCT([garden, objects,
-	T(3)(-0.5)(grass),
+area_model = STRUCT([garden, objects, grass,
 	T([1,2,3])([140,80,-0.2])( S([1,2,3])([1.5,1.5,1.5])(house_model_3D)),
 	T([1,2])([35,80]) (near_buildings),
 	T(2)(20)(road),

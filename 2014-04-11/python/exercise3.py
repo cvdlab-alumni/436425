@@ -57,7 +57,8 @@ def multiply(n,tvect,model):
 GRASS
 """
 
-grass = COLOR(P_GREEN)(CUBOID([250,250,0.5]))
+grass = COLOR(P_GREEN)(CUBOID([250,250,4.5]))
+grass = T(3)(-4.5)(grass)
 
 """
 NEAR BUILDINGS
@@ -101,11 +102,10 @@ pathway = T([1,2])([11.5,-19])(CUBOID([3.5,17,0.05]))
 AREA ASSEMBLY
 """
 
-# area_model = STRUCT([ T(2)(20)(road),
+# area_model = STRUCT([ T(2)(20)(road), grass,
 # 	T([1,2,3])([140,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
 # 	T([1,2,3])([30,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
 # 	T([1,2,3])([140,80,-0.2])( S([1,2,3])([1.5,1.5,1.5])(house_model_3D)),
-# 	T(3)(-0.5)(grass),
 # 	T([1,2])([35,80]) (near_buildings)])
 
 # VIEW(area_model)
