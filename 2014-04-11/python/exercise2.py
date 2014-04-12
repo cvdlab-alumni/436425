@@ -90,4 +90,4 @@ house_model_3D = STRUCT ([floor0_3D, double_stairs,
 	T([1,2,3])([36-c_size/2-wall_width/3,8.15+c_size,1.9])(west_3D),
 	T([1,2,3])([8-c_size/2,8.15+c_size,0])(roof_3D)])
 
-VIEW(house_model_3D)
+# VIEW(house_model_3D)

@@ -66,16 +66,15 @@ NEAR BUILDINGS
 building1_base = larIntervals([1,1,1])([50,30,20])
 building1_roof_1 = translateModel( larIntervals([1,1,1])([52,32,1]) , [-1,-1,20] )
 building1_roof_v = [ [-1,-1,21],[51,-1,21],[51,31,21],[-1,31,21],[10,15,27],[40,15,27] ]
-building1_roof_c = [ [0,1,5,4],[1,2,5],[2,3,4,5],[3,0,4] ]
+building1_roof_c = [ [0,1,2,3,4,5] ]
 building1 = larStruct([building1_base,building1_roof_1,(building1_roof_v,building1_roof_c)])
 
 # silos
 silo_base = larRod((10,50))()
-silo_top = translateModel(larSphere(10)(),[0,0,50])
+silo_top = translateModel(larSphere(10)([9,18]),[0,0,50])
 silo = larStruct([silo_base,silo_top])
 silo = translateModel(silo,[-5,110])
 silos = multiply(3,[25,0],silo)
-silos = multiply(2,[0,25],silos)
 
 # near buildings assembly
 near_buildings = COLOR(P_SBROWN)(STRUCT(MKPOLS(building1) + MKPOLS(silos)))
@@ -102,11 +101,11 @@ pathway = T([1,2])([11.5,-19])(CUBOID([3.5,17,0.05]))
 AREA ASSEMBLY
 """
 
-area_model = STRUCT([ T(2)(20)(road),
-	T([1,2,3])([140,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
-	T([1,2,3])([30,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
-	T([1,2,3])([140,80,-0.2])( S([1,2,3])([1.5,1.5,1.5])(house_model_3D)),
-	T(3)(-0.5)(grass),
-	T([1,2])([35,80]) (near_buildings)])
+# area_model = STRUCT([ T(2)(20)(road),
+# 	T([1,2,3])([140,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
+# 	T([1,2,3])([30,80]) (S([1,2,3])([1.5,1.5,1.5])(pathway)),
+# 	T([1,2,3])([140,80,-0.2])( S([1,2,3])([1.5,1.5,1.5])(house_model_3D)),
+# 	T(3)(-0.5)(grass),
+# 	T([1,2])([35,80]) (near_buildings)])
 
 # VIEW(area_model)

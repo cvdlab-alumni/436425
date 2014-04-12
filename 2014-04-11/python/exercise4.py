@@ -8,7 +8,7 @@ LAR FUNCTIONS
 # author: Stefano Russo
 def generateFence(n,tot_length,height,width):
 	single_length = tot_length/float(n)
-	rod = larRod((width*1.5,height))([16,1])
+	rod = larRod((width*1.5,height))([10,1])
 	rod1 = translateModel(rod,[single_length/4.0,0])
 	rod2 = translateModel(rod,[single_length-single_length/4.0,0])
 	bar = translateModel(larIntervals([1,1,1])([single_length,width,width*4.0]),[0,-width*2.5])
@@ -37,6 +37,20 @@ def generateTree(r,height):
 	foliage = translateModel(larBall(r)(),[0,0,height*0.75])
 	return STRUCT(AA(COLOR(P_DBROWN))(MKPOLS(trunk))+AA(COLOR(GREEN))(MKPOLS(foliage)))
 
+# Half Torus
+# author: Prof. Paoluzzi
+def larHalfTorus(params):
+   r,R = params
+   def larHalfTorus0(shape=[24,36,1]):
+      domain = larIntervals(shape)([2*PI,PI,r])
+      V,CV = domain
+      x = lambda V : [(R + p[2]*COS(p[0])) * COS(p[1]) for p in V]
+      y = lambda V : [(R + p[2]*COS(p[0])) * SIN(p[1]) for p in V]
+      z = lambda V : [-p[2] * SIN(p[0]) for p in V]
+      mapping = [x,y,z]
+      return larMap(mapping)(domain)
+   return larHalfTorus0
+
 """
 GARDEN
 """
@@ -63,7 +77,7 @@ fence3 = translateModel(generateFence(33,87,3,0.08),[162.5,0])
 fence4 = translateModel(rotateModel(generateFence(32,85,3,0.08),(PI/2,0,0)),[110,-0.12])
 fence5 = translateModel(rotateModel(generateFence(94,250,3,0.08),(PI,0,0)),[250,84.76])
 
-fences = STRUCT(MKPOLS(larStruct([fence1,fence2,fence3,fence4,fence5])))
+fences = COLOR(P_DWOOD)(STRUCT(MKPOLS(larStruct([fence1,fence2,fence3,fence4,fence5]))))
 
 """
 ROAD
@@ -104,16 +118,66 @@ tree7 = T([1,2])([150,120])(generateTree(15,45))
 trees = STRUCT([tree1,tree2,tree3,tree4,tree5,tree6,tree7])
 
 """
+STREET LAMPS
+"""
+# street lamp
+sl_p1 = larRod((0.3,10))([15,1])
+sl_p2 = rotateModel( larHalfTorus((0.3,3))([15,20,1]),(0,0,PI/2))
+sl_p2 = translateModel(sl_p2,[3,0,10])
+sl_p3_v = [ [0.,0.,0.],[1.5,0.,0.],[1.5,1.,0.],[0.,1.,0.],[0.3,0.3,0.8],[0.6,0.3,0.8],[0.6,0.6,0.8],[0.3,0.6,0.8]]
+sl_p3_c = [[0,1,2,3,4,5,6,7]]
+sl_p3 = translateModel((sl_p3_v,sl_p3_c),[5.5,-0.5,9.5])
+street_lamp=rotateModel(larStruct([sl_p1,sl_p2,sl_p3]),(PI/2,0,0))
+
+# multiply street lamp
+street_lamps = COLOR(P_DGRAY)(STRUCT(MKPOLS(multiply(6,[48,0],street_lamp))))
+
+"""
+OTHER OBJECTS
+"""
+
+# table
+tb_p1 = larRod((0.1,1.6))([15,1])
+tb_down = multiply(2,[0,1.3], multiply(2,[3,0],tb_p1))
+tb_top = translateModel(larIntervals([1,1,1])([3.4,1.7,0.2]),[-0.2,-0.2,1.6])
+table = COLOR(P_DWOOD)(STRUCT(MKPOLS(larStruct([tb_down,tb_top]))))
+
+# bus stop
+bs_p1 = larRod((0.1,5))([15,1])
+bs_p2 = translateModel(larIntervals([1,1,1])([0.3,2.4,2]),[-0.15,-1.2,5])
+bus_stop = STRUCT(AA(COLOR(P_GRAY))(MKPOLS(bs_p1))+AA(COLOR(YELLOW))(MKPOLS(bs_p2)))
+
+# bus shelter
+bsh_p1 = R([2,3])(PI/2)(build_window_3D(0.1)(15)(7))
+bsh_p2 = R([1,2])(PI/2)(R([2,3])(PI/2)(build_window_3D(0.1)(5)(7)))
+bsh_top = T([1,2,3])([-0.5,-0.5,7])(CUBOID([16,6,0.3]))
+bsh_floor = CUBOID([15,5,0.1])
+bus_shelter = STRUCT([
+	T(3)(0.1)(bsh_p1),
+	T(3)(0.1)(bsh_p2),
+	T([1,3])([14.9,0.1])(bsh_p2),
+	COLOR(P_GRAY)(T(3)(0.1)(bsh_top)),
+	COLOR(P_GRAY)(bsh_floor)])
+
+# assemble objects
+objects = STRUCT([T([1,2])([220,90])(S([1,2,3])([1.8,1.8,1.2])(table)),
+	T([1,2,3])([167,94,2.3])(S([1,2,3])([1.6,1.6,1.2])(table)),
+	T([1,2])([140,46])(bus_stop),
+	T([1,2])([90,25])(bus_stop),
+	T([1,2])([80,15])(bus_shelter)])
+
+"""
 AREA ASSEMBLY
 """
 
-area_model = STRUCT([ garden,
+area_model = STRUCT([garden, objects,
 	T(3)(-0.5)(grass),
 	T([1,2,3])([140,80,-0.2])( S([1,2,3])([1.5,1.5,1.5])(house_model_3D)),
 	T([1,2])([35,80]) (near_buildings),
 	T(2)(20)(road),
-	COLOR(P_DBROWN)(T(2)(52)(fences)),
-	T([1,2])([15,70])(trees)])
+	T(2)(52)(fences),
+	T([1,2])([15,70])(trees),
+	T([1,2])([5,18])(street_lamps)])
 	
 
 VIEW(area_model)
