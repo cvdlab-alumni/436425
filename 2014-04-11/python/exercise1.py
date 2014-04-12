@@ -9,6 +9,7 @@ c_width = c_size/10 	# column width
 wnd_width = 0.05	# window width
 wall_width = 0.15	# wall width
 glass_material = [0.1,0.2,0.3,1,  0,0,0,0.5,  2,2,2,1, 0,0,0,1, 100] 	# glass material matrix
+water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100] 	# glass material matrix
 
 P_GRAY	= Color4f([0.9, 0.9, 0.9, 1.0])
 P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
@@ -17,6 +18,8 @@ P_SBROWN= Color4f([0.83, 0.8, 0.6, 1.0])
 P_WOOD	= Color4f([0.67, 0.51, 0.25, 1.0])
 P_DWOOD	= Color4f([0.56, 0.43, 0.22, 1.0])
 P_GREEN = Color4f([0.05, 0.6, 0.08, 1.0])
+
+
 """
 PLASM FUNCTIONS
 """

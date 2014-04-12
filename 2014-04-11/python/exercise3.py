@@ -109,4 +109,4 @@ area_model = STRUCT([ T(2)(20)(road),
 	T(3)(-0.5)(grass),
 	T([1,2])([35,80]) (near_buildings)])
 
-VIEW(area_model)
+# VIEW(area_model)
