@@ -19,10 +19,9 @@ def drawDiagram(diagram):
 	VIEW(COLOR(P_SBROWN)(STRUCT(MKPOLS(diagram))))
 
 # Remove cells from diagram
-def remove(diagram,cells_tr):
+def removeCells(diagram,cells_tr):
 	V,CV = diagram
 	return V,[cell for k,cell in enumerate(CV) if not (k in cells_tr)]
-
 
 """ FULL APARTMENT AND MAIN REFINEMENTS """
 
@@ -37,7 +36,7 @@ refine2 = assemblyDiagramInit([3,1,1])([[3.6,iw,7],[6.8],[3]])
 apartment = diagram2cell(refine2,apartment,71)
 # drawNumDiagram(apartment,GREEN,1)
 
-apartment = remove(apartment,[17,71,73,69,56,54,13,33,52])
+apartment = removeCells(apartment,[17,71,73,69,56,54,13,33,52])
 # drawNumDiagram(apartment,GREEN,1)
 # drawDiagram(apartment)
 
@@ -75,17 +74,28 @@ apartment = diagram2cell(lr_s,apartment,28)
 # drawNumDiagram(apartment,GREEN,1)
 
 # bedroom1 - east
-br_e = assemblyDiagramInit([1,3,2])([[iw],[6,1.5,0.5],[2.5,0.5]])
-apartment = diagram2cell(br_e,apartment,21)
+br1_e = assemblyDiagramInit([1,3,2])([[iw],[6,1.5,0.5],[2.5,0.5]])
+apartment = diagram2cell(br1_e,apartment,21)
 # drawNumDiagram(apartment,GREEN,1)
 
 # bedroom1 - south
-br_s = assemblyDiagramInit([3,1,3])([[2.5,1.8,1.7],[ew],[1,1.5,0.5]])
-apartment = diagram2cell(lr_s,apartment,11)
+br1_s = assemblyDiagramInit([3,1,3])([[2.5,1.8,1.7],[ew],[1,1.5,0.5]])
+apartment = diagram2cell(br1_s,apartment,11)
+# drawNumDiagram(apartment,GREEN,1)
+
+# bedroom2 - north
+br2_n = assemblyDiagramInit([3,1,3])([[2.5,1.8,1.7],[ew],[1,1.5,0.5]])
+apartment = diagram2cell(br2_n,apartment,16)
+# drawNumDiagram(apartment,GREEN,1)
+
+# kitchen - north
+kt_n = assemblyDiagramInit([5,1,3])([[1.5,1,2.4,1.8,3],[ew],[1,1.5,0.5]])
+apartment = diagram2cell(kt_n,apartment,29)
 # drawNumDiagram(apartment,GREEN,1)
 
 # remove cells of doors and windows
-doorsToRemove = [84,114,58,68,62,72,78,90]
-windowsToRemove = [98,107,122]
-apartment = remove(apartment,doorsToRemove+windowsToRemove)
+doorsToRemove = [82,112,56,66,60,70,76,88]
+windowsToRemove = [96,105,120,129,138,144]
+apartment = removeCells(apartment,doorsToRemove+windowsToRemove)
+
 drawDiagram(apartment)
