@@ -25,7 +25,7 @@ def removeCells(diagram,cells_tr):
 
 """ FULL APARTMENT AND MAIN REFINEMENTS """
 
-apartment = assemblyDiagramInit([7,5,2])([[ew,6,iw,3.6+iw+7,iw,4,ew],[ew,8,iw,10,ew],[0.4,3]])
+apartment = assemblyDiagramInit([7,5,2])([[ew,6,iw,3.6+iw+7,iw,4,ew],[ew,8,iw,10,ew],[0.3,3]])
 # drawNumDiagram(apartment,GREEN,2)
 
 refine1 = assemblyDiagramInit([1,3,1])([[3.6+iw+7],[3,iw,6.8],[3]])
@@ -98,4 +98,4 @@ doorsToRemove = [82,112,56,66,60,70,76,88]
 windowsToRemove = [96,105,120,129,138,144]
 apartment = removeCells(apartment,doorsToRemove+windowsToRemove)
 
-drawDiagram(apartment)
+# drawDiagram(apartment)
