@@ -441,9 +441,7 @@ tux = STRUCT(tux1+tux2+tux3+tux4+tux5+tux6+tux7+tux8+tux9+tux10+tux11+tux12+tux1
 	tux219+tux220+tux221+tux222+tux223+tux224+tux225+tux226+tux227+tux228+tux229+tux230+
 	tux231+tux232+tux233+tux234+tux235+tux236+tux237+tux238+tux239+tux240+tux241+tux242+
 	tux243+tux244+tux245+tux246+tux247+tux248+tux249+tux250+tux251)
-tux = COLOR(BLACK)(PROD([OFFSET([0.05,0.05])(tux),Q(0.15)]))
-
-
+tux = COLOR(P_DGREEN)(PROD([OFFSET([0.15,0.15])(tux),Q(0.7)]))
 
 # FULL SCENE
 
