@@ -455,4 +455,3 @@ full_scene = STRUCT([
 	T([1,2,3])([30,40,0])(R([1,2])(PI)(tux))
 	])
 VIEW(full_scene)
-
