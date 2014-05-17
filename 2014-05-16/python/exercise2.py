@@ -154,7 +154,13 @@ fountain_map = ROTATIONALSURFACE(fountain_profile)
 fountain = COLOR(P_DGRAY)(MAP(fountain_map)(dom2D))
 fountain_base = COLOR(P_DGRAY)(T(3)(0.01)(CIRCLE(3.4)((20,1))))
 fountain_water =  MATERIAL(water_material)(T(3)(3.7)(PROD([CIRCLE(5.6)((20,1)),Q(0.1)])))
-fountain_and_water = S([1,2,3])([0.3,0.3,0.3])(STRUCT([fountain,fountain_base,fountain_water]))
+rod = COLOR(P_DGRAY)(CYLINDER([0.1,8])(10))
+z_cp = [[1.2,0,1.48], [1.17,0,2.62], [1.54,0,4.13], [2.03,0,2.87]]
+z_profile = BEZIER(S1)(z_cp)
+z = OFFSET([0.05,0.05,0.05])(MAP(z_profile)(dom2D))
+z = T([1,2,3])([-5.1,-0.1,0.8]) ( S([1,2,3])([2.5,2.5,2.5]) (MATERIAL(water_material)(z)) )
+z2 = STRUCT(NN(2)([z, R([1,2])(PI)]))
+fountain_and_water = S([1,2,3])([0.3,0.3,0.3])(STRUCT([fountain,fountain_base,fountain_water,rod,z2]))
 
 # GARDEN POT
 pot_cp = [[1.14,0,0.0], [2.1,0,1.38], [0.46,0,1.53], [1.13,0,2.27]]
