@@ -83,9 +83,9 @@ br1_s = assemblyDiagramInit([3,1,3])([[2.5,1.8,1.7],[ew],[1,1.5,0.5]])
 apartment = diagram2cell(br1_s,apartment,11)
 # drawNumDiagram(apartment,GREEN,1)
 
-# bedroom2 - north
-br2_n = assemblyDiagramInit([3,1,3])([[2.5,1.8,1.7],[ew],[1,1.5,0.5]])
-apartment = diagram2cell(br2_n,apartment,16)
+# bedroom2 - west
+br2_w = assemblyDiagramInit([1,3,3])([[ew],[2,2,6],[1,1.5,0.5]])
+apartment = diagram2cell(br2_w,apartment,7)
 # drawNumDiagram(apartment,GREEN,1)
 
 # kitchen - north
