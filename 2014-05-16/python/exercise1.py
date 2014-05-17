@@ -9,6 +9,7 @@ ew = 0.4 # external wall
 P_SBROWN= Color4f([0.83, 0.8, 0.6, 1.0])
 P_GREEN = Color4f([0.05, 0.6, 0.08, 1.0])
 P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
+glass_material = [0.1,0.2,0.3,1,  0,0,0,0.5,  2,2,2,1, 0,0,0,1, 100]
 water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100]
 
 # Draw (VIEW) diagram with cells numbering
