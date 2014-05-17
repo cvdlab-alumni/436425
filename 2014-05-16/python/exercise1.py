@@ -12,6 +12,10 @@ P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
 glass_material = [0.1,0.2,0.3,1,  0,0,0,0.5,  2,2,2,1, 0,0,0,1, 100]
 water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100]
 
+"""
+FUNCTIONS
+"""
+
 # Draw (VIEW) diagram with cells numbering
 def drawNumDiagram(diagram,color,dim):
 	V,CV = diagram
@@ -26,6 +30,7 @@ def drawDiagram(diagram):
 def removeCells(diagram,cells_tr):
 	V,CV = diagram
 	return V,[cell for k,cell in enumerate(CV) if not (k in cells_tr)]
+
 
 """ FULL APARTMENT AND MAIN REFINEMENTS """
 
