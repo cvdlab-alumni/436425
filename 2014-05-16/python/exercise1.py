@@ -7,6 +7,9 @@ from larcc import *
 iw = 0.2 # internal wall
 ew = 0.4 # external wall
 P_SBROWN= Color4f([0.83, 0.8, 0.6, 1.0])
+P_GREEN = Color4f([0.05, 0.6, 0.08, 1.0])
+P_DGRAY	= Color4f([0.6, 0.6, 0.6, 1.0])
+water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100]
 
 # Draw (VIEW) diagram with cells numbering
 def drawNumDiagram(diagram,color,dim):
@@ -53,7 +56,7 @@ apartment = diagram2cell(hw_s,apartment,32)
 # drawNumDiagram(apartment,GREEN,1)
 
 # hallway - east and west
-hw_e_w = assemblyDiagramInit([1,3,2])([[iw],[0.6,1.5,7.9],[2.5,0.5]])
+hw_e_w = assemblyDiagramInit([1,3,2])([[iw],[0.7,1.4,7.9],[2.5,0.5]])
 apartment = diagram2cell(hw_e_w,apartment,42)
 apartment = diagram2cell(hw_e_w,apartment,25)
 # drawNumDiagram(apartment,GREEN,1)

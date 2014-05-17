@@ -126,5 +126,39 @@ ramps = multiply(3,[0,0,3.05],full_ramp)
 # complete building
 full_building = COLOR(P_SBROWN)(STRUCT( MKPOLS(building) + MKPOLS(ramps) ))
 
-VIEW(full_building)
+# VIEW(full_building)
+
+
+""" DECORATIONS """
+
+dom2D = R([2,3])(PI)(EMBED(1)(PROD([GRID([.05]*20),GRID([2*PI/30]*30)])))
+
+# GRASS
+grass = COLOR(P_GREEN)(CUBOID([60,60,0.5]))
+
+# FOUNTAIN
+fountain_cp = [[3.42,0,0.02], [2.61,0,1.56], [5.66,0,2.07], [5.66,0,3.89]]
+fountain_profile = BEZIER(S1)(fountain_cp)
+fountain_map = ROTATIONALSURFACE(fountain_profile)
+fountain = COLOR(P_DGRAY)(MAP(fountain_map)(dom2D))
+fountain_base = COLOR(P_DGRAY)(T(3)(0.01)(CIRCLE(3.4)((20,1))))
+fountain_water =  MATERIAL(water_material)(T(3)(3.7)(PROD([CIRCLE(5.6)((20,1)),Q(0.1)])))
+fountain_and_water = S([1,2,3])([0.3,0.3,0.3])(STRUCT([fountain,fountain_base,fountain_water]))
+
+# GARDEN POT
+pot_cp = [[1.14,0,0.0], [2.1,0,1.38], [0.46,0,1.53], [1.13,0,2.27]]
+pot_profile = BEZIER(S1)(pot_cp)
+pot_map = ROTATIONALSURFACE(pot_profile)
+pot_side = COLOR(P_DGRAY)(MAP(pot_map)(dom2D))
+pot_base = COLOR(P_DGRAY)(T(3)(0.01)(CIRCLE(1.1)((20,1))))
+pot = S([1,2,3])([0.3,0.3,0.3])(STRUCT([pot_side,pot_base]))
+
+full_scene = STRUCT([
+	T([1,2,3])([-10,-5,-0.5])(grass),
+	full_building,
+	T([1,2])([40,40])(fountain_and_water),
+	T([1,2])([2,25])(  STRUCT(NN(6)([pot,T(1)(8)]))  ),
+	])
+
+VIEW(full_scene)
 
