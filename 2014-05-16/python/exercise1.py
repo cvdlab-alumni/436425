@@ -4,8 +4,8 @@
 
 from larcc import *
 
-iw = 0.2 # internal wall
-ew = 0.4 # external wall
+iw = 0.1 # internal wall
+ew = 0.2 # external wall
 P_SBROWN= Color4f([0.83, 0.8, 0.6, 1.0])
 P_GREEN = Color4f([0.05, 0.6, 0.08, 1.0])
 P_DGREEN = Color4f([0.06, 0.25, 0, 1.0])
@@ -17,20 +17,35 @@ water_material = [0.05,0.4,0.4,1,  0,0.3,0.3,0.5,  2,2,2,1, 0,0,0,1, 100]
 FUNCTIONS
 """
 
-# Draw (VIEW) diagram with cells numbering
+# Draws (VIEW) diagram with cells numbering
 def drawNumDiagram(diagram,color,dim):
 	V,CV = diagram
 	diagram_hpc = SKEL_1(STRUCT(MKPOLS(diagram)))
 	VIEW(cellNumbering(diagram,diagram_hpc)(range(len(CV)),color,dim))
 
-# Draw (VIEW) diagram solid
+# Draws (VIEW) diagram solid
 def drawDiagram(diagram):
 	VIEW(COLOR(P_SBROWN)(STRUCT(MKPOLS(diagram))))
 
-# Remove cells from diagram
+# Removes cells from diagram
 def removeCells(diagram,cells_tr):
 	V,CV = diagram
 	return V,[cell for k,cell in enumerate(CV) if not (k in cells_tr)]
+
+# Switches diagram's axis. "axis": new axis vector.
+# Ex:  switchAxis(diagram,[1,0,2]) -> switches axis x and y
+def switchAxis(diagram,axis):
+	V,CV = diagram
+	return AA(lambda x:[x[axis[0]],x[axis[1]],x[axis[2]]])(V),CV
+
+# Inserts "diagram" into the cells ("targetCells") of a "master" diagram.
+# The original diagram is corrected, removing cells present in "cellsToRemove".
+def insertDiagramIntoCells(diagram,cellsToRemove,master,targetCells):
+	new_diagram = removeCells(diagram,cellsToRemove)
+	targetCells.sort()
+	for i in xrange(len(targetCells)):
+		master = diagram2cell(new_diagram,master,targetCells[i]-i)
+	return master
 
 
 """ FULL APARTMENT AND MAIN REFINEMENTS """
@@ -94,7 +109,7 @@ apartment = diagram2cell(br1_s,apartment,11)
 # drawNumDiagram(apartment,GREEN,1)
 
 # bedroom2 - west
-br2_w = assemblyDiagramInit([1,3,3])([[ew],[2,2,6],[1,1.5,0.5]])
+br2_w = assemblyDiagramInit([1,3,3])([[ew],[2,1.8,6.2],[1,1.5,0.5]])
 apartment = diagram2cell(br2_w,apartment,7)
 # drawNumDiagram(apartment,GREEN,1)
 
@@ -103,9 +118,25 @@ kt_n = assemblyDiagramInit([5,1,3])([[1.5,1,2.4,1.8,3],[ew],[1,1.5,0.5]])
 apartment = diagram2cell(kt_n,apartment,29)
 # drawNumDiagram(apartment,GREEN,1)
 
-# remove cells of doors and windows
-doorsToRemove = [82,112,56,66,60,70,76,88]
-windowsToRemove = [96,105,120,129,138,144]
-apartment = removeCells(apartment,doorsToRemove+windowsToRemove)
+# WINDOW - TYPE 1
+wnd1 = assemblyDiagramInit([1,3,1])([[1.8],[0.1,0.2,0.1],[1.5]])
+wnd1_p2 = assemblyDiagramInit([5,1,3])([[0.1,0.75,0.1,0.75,0.1],[0.2],[0.1,1.3,0.1]])
+wnd1 = diagram2cell(wnd1_p2,wnd1,1)
+apartment = insertDiagramIntoCells(wnd1,[0,1,6,12],apartment,[96,120,144,105])
+apartment = insertDiagramIntoCells(switchAxis(wnd1,[1,0,2]),[0,1,6,12],apartment,[126])
+# drawNumDiagram(apartment,GREEN,1)
+
+# WINDOW - TYPE 2
+wnd2 = assemblyDiagramInit([1,3,1])([[1],[0.1,0.2,0.1],[1.5]])
+wnd2_p2 = assemblyDiagramInit([5,1,5])([[0.1,0.35,0.1,0.35,0.1],[0.2],[0.1,0.6,0.1,0.6,0.1]])
+wnd2 = diagram2cell(wnd2_p2,wnd2,1)
+apartment = insertDiagramIntoCells(wnd2,[0,1,10,20,8,18],apartment,[134])
+# drawNumDiagram(apartment,GREEN,1)
+
+# DOORS
+door = assemblyDiagramInit([1,3,1])([[1.5],[0.1,0.05,0.1],[2.5]])
+apartment = insertDiagramIntoCells(door,[0,2],apartment,[88,66,56,60,70])
+apartment = insertDiagramIntoCells(switchAxis(door,[1,0,2]),[0,2],apartment,[72,78,105])
+# drawNumDiagram(apartment,GREEN,1)
 
 # drawDiagram(apartment)

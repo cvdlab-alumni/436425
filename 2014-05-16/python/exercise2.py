@@ -81,13 +81,11 @@ building = assemblyDiagramInit([1,2,6])([[44],[19,4.2],[0.1,3,3,3,3,0.5]])
 """ BALCONY """
 
 balcony = assemblyDiagramInit([3,2,3])([[0.2,36.8,7],[4,0.2],[0.3,1.5,1.5]])
-balcony = removeCells(balcony,[12,13,14,15,16,17,7,8,11,2])
-# drawNumDiagram(balcony,GREEN,3)
-
-building = diagram2cell(balcony,building,10)
-building = diagram2cell(balcony,building,9)
-building = diagram2cell(balcony,building,8)
-building = removeCells(building,[7])
+balcony_p2 = assemblyDiagramInit([1,2,2])([[44],[0.1,0.1],[3.2,0.1]])
+balcony = diagram2cell(balcony_p2,balcony,10)
+building = insertDiagramIntoCells(balcony,[11,12,13,14,15,16,17,7,8,10,2],building,[8,9,10])
+base = assemblyDiagramInit([2,2,1])([[0.2,43.8],[4,0.2],[3.3]])
+building = insertDiagramIntoCells(base,[0,2,3],building,[7])
 # drawNumDiagram(building,GREEN,3)
 
 
@@ -103,6 +101,15 @@ building = diagram2cell(plan,building,3)
 building = diagram2cell(plan,building,2)
 building = diagram2cell(plan,building,1)
 # drawNumDiagram(building,GREEN,3)
+
+
+""" ROOF """
+
+roof = assemblyDiagramInit([3,2,2])([[0.3,43.4,0.3],[0.3,18.7],[0.3,0.2]])
+building = insertDiagramIntoCells(roof,[7],building,[1])
+roof_p2 = assemblyDiagramInit([3,2,2])([[0.3,43.4,0.3],[4,0.3],[0.3,0.2]])
+building = insertDiagramIntoCells(roof_p2,[5],building,[2])
+# drawNumDiagram(building,GREEN,0.5)
 
 
 """ STAIRS """
@@ -128,8 +135,27 @@ flat = translateModel(flat,[2.5,-2,1.45])
 full_ramp = translateModel(larStruct([ramp1,ramp2,flat]),[37,21,0.05])
 ramps = multiply(3,[0,0,3.05],full_ramp)
 
+
+""" FULL BUILDING """
+
+# coloring building's doors
+#
+# NOTA: semplice colorazione applicata manualmente alle singole celle delle porte 
+# frontali. Non sono state utilizate catene, poiche' sarebbe stata necessaria una 
+# parziale riscrittura del codice.
+
+color_building = MKPOLS(building)
+color_building[487] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[487])
+color_building[258] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[258])
+color_building[945] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[945])
+color_building[716] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[716])
+color_building[1403] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[1403])
+color_building[1174] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[1174])
+color_building[1632] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[1632])
+color_building[1861] = COLOR(Color4f([(0.4),(0.28),(0)]))(color_building[1861])
+
 # complete building
-full_building = COLOR(P_SBROWN)(STRUCT( MKPOLS(building) + MKPOLS(ramps) ))
+full_building = COLOR(P_SBROWN)(STRUCT( color_building + MKPOLS(ramps) ))
 
 # VIEW(full_building)
 
@@ -454,10 +480,11 @@ tux = COLOR(P_DGREEN)(PROD([OFFSET([0.15,0.15])(tux),Q(0.7)]))
 full_scene = STRUCT([
 	T([1,2,3])([-10,-5,-0.5])(grass),
 	full_building,
-	T([1,2,3])([66.5,28.8,0.2])(S([1,2,3])([4.5,4.5,4.5])(glass)),
+	T([1,2,3])([66.5,28.8,0.1])(S([1,2,3])([4.5,4.5,4.5])(glass)),
 	T([1,2])([40,40])(fountain_and_water),
 	T([1,2])([5,40])(fountain_and_water),
 	T([1,2])([2,25])(STRUCT(NN(6)([pot,T(1)(8)]))),
 	T([1,2,3])([30,40,0])(R([1,2])(PI)(tux))
 	])
+
 VIEW(full_scene)
