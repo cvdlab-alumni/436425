@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <title>Final project</title> 
+  <style>
+
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #stats{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    #pointer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-top: -20px;
+      margin-left: -20px;
+      width: 40px;
+      height: 40px;
+      display: none;
+      background-image: url("assets/textures/pointer.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    #instructions {
+      text-shadow:0px 0px 20px rgba(194,241,255,1);
+      font-weight:bold;
+      font-size:30px;
+      font-family:arial, helvetica, sans-serif;
+      text-align:center;
+      position: fixed;
+      top: 5%;
+      left: 80%;
+      margin-top: -15px;
+      margin-left: -50px;
+      width: 200px;
+      height: 30px;
+      display: none;
+    }
+
+    #plerror {
+      text-shadow:0px 0px 20px rgba(250,100,100,1);
+      font-weight:bold;
+      font-size:30px;
+      font-family:arial, helvetica, sans-serif;
+      text-align:center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-top: -15px;
+      margin-left: -100px;
+      width: 200px;
+      height: 30px;
+      display: none;
+    }
+
+  </style> 
+</head>
+<body>
+
+  <div id="stats"></div>
+  <div id="pointer"></div>
+  <div id="instructions">'ESC' to exit</div>
+  <div id="plerror">Pointer Lock ERROR!</div>
+
+  <!-- JavaScript libraries -->
+  <script src="assets/libs/three.min.js"></script> 
+  <script src="assets/libs/jquery.min.js"></script>
+  <script src="assets/libs/Stats.min.js"></script>
+  <script src="assets/libs/dat.gui.min.js"></script>
+  <script src="assets/libs/TrackballControls.js"></script>
+  <script src="assets/libs/PointerLockControls.js"></script>
+  <script src="assets/libs/tween.min.js"></script>
+  <script src="assets/libs/OBJLoader.js"></script> 
+  <script src="assets/libs/MTLLoader.js"></script>
+  <script src="assets/libs/OBJMTLLoader.js"></script>
+
+  <!-- Scene -->
+  <script src="scripts/FirstPersonControls.js"></script>
+  <script src="scripts/Particles.js"></script>
+  <script src="scripts/Animations.js"></script>
+  <script src="scripts/Video-Sounds.js"></script>
+  <script src="scripts/GlobalFunctions.js"></script>
+  <script src="scripts/Init.js"></script>
+  <script src="scripts/Materials.js"></script>
+  <script src="scripts/Scene.js"></script>
+  <script src="scripts/Apartment.js"></script>
+  <script src="scripts/Apartment-Walls.js"></script>
+  <script src="scripts/Apartment-Doors.js"></script>
+  <script src="scripts/Apartment-Windows.js"></script>
+  <script src="scripts/Forniture.js"></script>
+  <script src="scripts/Lights.js"></script>
+  <script src="scripts/ControlGUI.js"></script>
+
+  <script>
+    $(function() {
+      $('body').append(renderer.domElement);
+      animate();
+    });    
+  </script>
+  
+
+</body>
+</html>
