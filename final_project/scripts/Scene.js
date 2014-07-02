@@ -37,15 +37,3 @@ grass.rotation.x = -Math.PI / 2;
 grass.position.y = -0.1;
 scene.add(grass);
 objects.push(grass);
-
-// var landing_G = new THREE.PlaneGeometry(2, 2, 50, 50);
-// landing_G.computeTangents();
-// var landing = mkMesh(landing_G, landing_material, false, true);
-// landing.rotation.x = -Math.PI / 2;
-// landing.position.set(10,-0.1,-9);
-// scene.add(landing);
-// var landing2 = landing.clone();
-// landing2.position.z -= 2;
-// scene.add(landing2);
-
-
