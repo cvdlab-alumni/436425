@@ -73,27 +73,27 @@ function mkWindow(width, height, thickness, vertical_num, horizontal_num, castSh
 }
 
 if (!disableWindows) {
-	var window_bedroom1 = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, -1);
+	var window_bedroom1 = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, 1);
 	window_bedroom1.position.set(2.9, 0.1, 1);
 	apartment.add(window_bedroom1)
 
-	var window_livingroom = mkWindow(2.8, 1.5, 0.2, 3, 3, true, true, true, -1);
+	var window_livingroom = mkWindow(2.8, 1.5, 0.2, 3, 3, true, true, true, 1);
 	window_livingroom.position.set(12.1, 0.1, 1);
 	apartment.add(window_livingroom)
 
-	var window_entry = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, -1);
+	var window_entry = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, 1);
 	window_entry.position.set(18.7, 0.1, 1);
 	apartment.add(window_entry)
 
-	var window_kitchen = mkWindow(2.01, 1.5, 0.2, 3, 4, true, true, true, 1);
+	var window_kitchen = mkWindow(2.01, 1.5, 0.2, 3, 4, true, true, true, -1);
 	window_kitchen.position.set(12.05, 18.9, 1);
 	apartment.add(window_kitchen)
 
-	var window_bathroom = mkWindow(1.11, 1.5, 0.2, 3, 3, true, true, false, 1);
+	var window_bathroom = mkWindow(1.11, 1.5, 0.2, 3, 3, true, true, false, -1);
 	window_bathroom.position.set(8.27, 18.9, 1);
 	apartment.add(window_bathroom)
 
-	var window_bedroom2 = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, 1);
+	var window_bedroom2 = mkWindow(1.8, 1.5, 0.2, 3, 3, true, true, true, -1);
 	window_bedroom2.rotation.z = Math.PI / 2;
 	window_bedroom2.position.set(0.1, 10.6, 1);
 	apartment.add(window_bedroom2)

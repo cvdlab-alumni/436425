@@ -8,7 +8,7 @@ var disableDoors = false;
 var disableWindows = false;
 var disableWalls = false;
 var disableForniture = false;
-var disableLights = true;
+var disableLights = false;
 
 
 /* INITIALIZATIONS */
