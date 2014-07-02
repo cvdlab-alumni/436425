@@ -35,6 +35,7 @@ As mentioned above, the file [Init.js] (assets/Init.js) contains some settings t
 * **Day / night cycle** (day/sunset/night/sunrise, with soft transitions).
 * Textures with **diffuse maps**, **normal maps** and **displacement maps** using ShaderMaterial.
 * **Dynamic walls textures** (both internal and external).
+* Real **light switches** to turn on/off lights in every room.
 * **Particles systems** like rain, tap water and stars.
 * **Wearable 3D glasses** and 3D effect on laptop screen
 * **Mirror** with CubeCamera mapping for reflections.
@@ -42,8 +43,8 @@ As mentioned above, the file [Init.js] (assets/Init.js) contains some settings t
 * **Skybox** background, whose color changes depending on the time.
 * Animated in/out **fog** effect and **fog color** when it's raining.
 * **Trackball mode**, along with ...
-* ... **first person mode** (pointerlock) with **object picking**
+* ... **first person mode** (pointerlock) with **object picking**.
 * **Video texture** on TV and lighting effect.
 * Movable **parabolic antenna** with the **effect of signal loss** on TV.
 * **Control GUI** to control some features.
-* **Sounds** (doors, TV, radio, bathrom) with effect of  **fading out with distance**
+* **Sounds** (doors, TV, radio, bathrom) with effect of  **fading out with distance**.
