@@ -28,6 +28,7 @@ As mentioned above, the file [Init.js] (assets/Init.js) contains some settings t
 
 * **textures path** and **models path**
 * options to disable **roof**, **doors**, **windows**, **walls**, **forniture**, **lights**
+
 ---
 
 ### Features
