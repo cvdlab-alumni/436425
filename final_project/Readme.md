@@ -1,7 +1,11 @@
 CG - Final Project
 ==============
+
 Stefano Russo - 436425
 ------------------------------
+
+#### View the project [here] (http://stefix.github.io/CG-final_project/).
+
 ---
 
 ### Code organization
